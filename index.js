@@ -7,7 +7,11 @@ config();
 const cors = require("cors");
 const pool = require("./db");
 
-app.use(cors());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 app.use(express.json());
 
 app.get("/api/messages", async (req, res) => {
@@ -19,7 +23,7 @@ app.get("/api/messages", async (req, res) => {
   }
 });
 
-const port = Number(process.env.PORT) || 3001;
+const port = Number(process.PORT) || 3001;
 app.listen(port, () => {
   console.log(`runing on port ${port}`);
 });
